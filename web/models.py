@@ -2,13 +2,22 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.auth.models import User
+from django.db.models import OneToOneField
 
+class Token(models.Model):
+    user = OneToOneField(User, on_delete = models.CASCADE)
+    token = models.CharField(max_length = 36)
+    
+    
+    def __str__(self):
+        return "{}_token".format(self.user)
+    
 
 class Expense(models.Model):
     text = models.CharField(max_length = 300)
     date = models.DateTimeField()
     amount = models.BigIntegerField()
-    user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True, blank = True)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True)
     
     
     class Meta:

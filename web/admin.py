@@ -4,6 +4,13 @@ from django.contrib import admin
 
 from .models import Expense
 from .models import Income
+from .models import Token
+
+
+@admin.register(Token)
+class UserTokenAdmin(admin.ModelAdmin):
+    pass
+
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
@@ -13,3 +20,5 @@ class ExpenseAdmin(admin.ModelAdmin):
 @admin.register(Income)
 class IncomeAdmin(admin.ModelAdmin):
     pass
+
+
