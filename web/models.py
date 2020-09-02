@@ -4,6 +4,19 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import OneToOneField
 
+
+class userRegister(models.Model):
+    code = models.CharField(max_length=32)
+    email = models.CharField(max_length=120)
+    time = models.DateTimeField()
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)  # TODO: do not save password
+    
+    
+    def __str__(self):
+        return self.username
+    
+    
 class Token(models.Model):
     user = OneToOneField(User, on_delete = models.CASCADE)
     token = models.CharField(max_length = 36)
@@ -25,7 +38,7 @@ class Expense(models.Model):
         
     
     def __str__(self):
-        return "{0}  <{1} T>".format(self.text, self.amount)
+        return "<{0}> {1}  <{2} T>".format(self.user, self.text, self.amount)
     
     
 class Income(models.Model):
@@ -40,4 +53,4 @@ class Income(models.Model):
         
     
     def __str__(self):
-        return "{0}  <{1} T>".format(self.text, self.amount)
+        return "<{0}>-({1})-<{2} T>".format(self.user, self.text, self.amount)
