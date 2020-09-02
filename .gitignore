@@ -64,7 +64,7 @@ htmlcov/
 nosetests.xml
 # i add
 
-web/migrations/000*
+web/migrations/00*
 
 coverage.xml
 *.cover
