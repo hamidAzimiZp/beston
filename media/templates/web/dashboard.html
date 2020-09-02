@@ -3,11 +3,25 @@
 
 {% block title %}Dashboard | wellcome{% endblock %}
 
+{% block styles %}
+    <style>
+        table, tr, td{
+            padding : 10px;
+        }
+        table{
+            text-align: center;
+            caption-side: above;
+        }
+        td.date{
+            direction: ltr;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
     <p class="text-center">
         خوش آمدید {{ user.username }} 
     </p>
-
 
     {% if message and token %}
         <pre class="text-center">
@@ -16,4 +30,76 @@
             توکن شما : <code>{{ token }}</code>
         </pre>
     {% endif %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-8">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <td>تاریخ</td>
+                        <td>مقدار درآمد</td>
+                        <td>نام</td>
+                        <td>آیدی</td>
+                    </tr>
+                    {% for item in income_field %}
+                        <tr>
+                            <td class="date">{{ item.date }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>{{ item.text }}</td>
+                            <td>{{ item.id }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <td>تاریخ امروز</td>
+                        <td>جمع درآمد</td>
+                        <td>تعداد</td>
+                    </tr>
+                    <tr>
+                        <td class="date">{{ now }}</td>  
+                        <td>{{ total_income }}</td>
+                        <td>{{ expense_count }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br><br><br>
+        <hr>
+        <br><br><br>
+        <div class="row justify-content-center">
+            <div class="col-12 col-8">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <td>تاریخ</td>
+                        <td>مقدار خرج شده</td>
+                        <td>نام</td>
+                        <td>آیدی</td>
+                    </tr>
+                    {% for item in expense_field %}
+                        <tr>
+                            <td class="date">{{ item.date }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>{{ item.text }}</td>
+                            <td>{{ item.id }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <br>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <td>تاریخ امروز</td>
+                        <td>جمع مخارج</td>
+                        <td>تعداد</td>
+                    </tr>
+                    <tr>
+                        <td class="date">{{ now }}</td>  
+                        <td>{{ total_expense }}</td>
+                        <td>{{ expense_count }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
