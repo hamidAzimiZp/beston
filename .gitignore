@@ -65,7 +65,7 @@ nosetests.xml
 # i add
 
 web/migrations/00*
-
+forms.py
 coverage.xml
 *.cover
 *.py,cover
