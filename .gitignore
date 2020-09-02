@@ -62,6 +62,10 @@ htmlcov/
 .coverage.*
 .cache
 nosetests.xml
+# i add
+
+web/migrations/000*
+
 coverage.xml
 *.cover
 *.py,cover
