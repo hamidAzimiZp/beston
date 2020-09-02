@@ -14,12 +14,12 @@ class UserTokenAdmin(admin.ModelAdmin):
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["text", "user", "amount", "date"]
 
 
 @admin.register(Income)
 class IncomeAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["text", "user", "amount", "date"]
 
 
 @admin.register(userRegister)

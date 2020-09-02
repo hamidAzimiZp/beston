@@ -15,7 +15,7 @@ class userRegister(models.Model):
     
     def __str__(self):
         return self.username
-    
+ 
     
 class Token(models.Model):
     user = OneToOneField(User, on_delete = models.CASCADE)
