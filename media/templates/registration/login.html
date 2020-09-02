@@ -1,0 +1,96 @@
+{% extends "parent/main.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-12">
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss = "alert">&times;</a>
+                    نام کاربری یا پسورد شما نادرست است.
+                    </a>
+                </div>
+            {% endif %}
+    
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p>
+                {% else %}
+                    <p>
+                برای دیدن این صفحه باید لاگین کنید
+                    </p>
+                {% endif %}
+            {% endif %}
+                
+            {% if message %}
+              <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss = "alert">&times;</a>
+                <h5>{{ message|safe }}</h5>
+              </div>
+            {% endif %}        
+        </div>
+    </div>
+    {% if not user.is_authenticated %}
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6 col-md-offset-3">
+          <div class="panel panel-default registerForm p-3">
+            <div class="bg-info p-2 text-white text-center rounded">
+              <h3 class="panel-title">ورود</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal p-2" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="requestcode" value="True" />
+                  <input type="hidden" name="next" value="{{ next }}" />
+                  <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label"  style="display: block ruby;">نام کاربری</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="username" class="form-control" placeholder="نام کاربری">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label" style="display: block ruby;">کلمه عبور</label>
+                    <div class="col-sm-10">
+                      <input type="password" name="password" class="form-control"  placeholder="پسورد">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label" style="display: block ruby;">ربات نیستید؟</label>
+                    <div class="col-sm-10">
+                      <div class="g-recaptcha" data-sitekey="6LeN68QZAAAAAIvlhewcYYAoPaELv5QomP_RPtr5"></div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-outline-success" style="padding-left : 25px;padding-right : 25px;">ورود</button>
+                    </div>
+                  </div>
+                </form>
+                <ul style="list-style-type: none; " class="p-3 mr-2">
+                  <li><a href="{% url 'web:register' %}">ثبت نام</a></li>
+                  <li><a href="">بازیابی پسورد</a></li>
+                <ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="container">
+        <div class="row justify-content-center ">
+          <div class="col-12 text-center">
+            <div class="content registerForm p-3">
+              <div class="content-body">
+                <h3>
+                  برای دیدن این صفحه ابتدا باید <a href="{% url 'logout' %}" style="text-decoration:none">خارج</a> شوید
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+{% endblock %}

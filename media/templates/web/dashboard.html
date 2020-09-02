@@ -1,0 +1,19 @@
+{% extends "parent/main.html" %}
+{% load static %}
+
+{% block title %}Dashboard | wellcome{% endblock %}
+
+{% block body %}
+    <p class="text-center">
+        خوش آمدید {{ user.username }} 
+    </p>
+
+
+    {% if message and token %}
+        <pre class="text-center">
+            <code>{{ message }}</code>
+            <br><br>
+            توکن شما : <code>{{ token }}</code>
+        </pre>
+    {% endif %}
+{% endblock %}

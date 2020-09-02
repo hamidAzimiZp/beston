@@ -1,0 +1,18 @@
+{% extends "parent/main.html" %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="row justify-content-center" >
+            <div class="col-4">
+                <div class="content text-center" style="background-color: #2c3e50; border-radius: 5px; color: #fff;">
+                    <h3 class="text-center pt-1">Logout</h3>
+                    <hr style="border-color : #fff; width: 80%;">
+                    <p style="width: 80% ;margin-left: 10%; text-align: left;" class=" text-left">Thanks for spending some quality time with the Web site today.</p>
+                    <a href="{% url 'web:login' %}" style="color: cyan !important">Log in again</a>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

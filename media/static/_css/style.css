@@ -1,0 +1,48 @@
+body{
+    text-align: right;
+}
+a{
+    text-decoration: none !important;
+}
+.registerForm{
+    box-shadow: 0 0 15px 0px #000;
+    border-radius: 5px;
+}
+
+ul.nav_item_custom{
+    list-style-type: none;
+    text-align: right;
+    position: relative;
+    right: 84px;
+    top: 5px;
+}
+
+.nav_item_custom li{
+    font-size: 20px;
+}
+
+.nav_item_custom li a{
+    color : #fff
+}
+
+ul.nav_items_custom{
+    list-style-type: none;
+    position: relative;
+    right: 70px;
+    top: 5px;
+}
+
+.nav_items_custom li {
+    display: inline;
+    margin-left: 10px;
+    font-size: 20px;
+}
+.nav_items_custom li a{
+    text-decoration: none;
+    color:#fff;
+    transition : 0.4s
+}
+
+.nav_items_custom li:hover a , .nav_item_custom li:hover a{
+    color : cyan
+}
