@@ -21,7 +21,6 @@ import string
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 
-from django.db.models import Sum
 
 def index(request):
     return render(request, "web/index.html")
@@ -103,6 +102,13 @@ def register(request):
         return render(request, 'registration/register.html', context)
 
 
+# def passwordReset(request):
+#     return render(request, "registration/passwordReset.html")
+    
+# def logout(request):
+#     return render(request, "registration/logged_out.html")
+
+# @csrf_exempt
 def login(request):
     
     if "requestcode" in request.POST:  # form is filled. if not spam, generate code and save in db, wait for email confirmation, return message
@@ -211,37 +217,6 @@ def submit_income(request):
     }, encoder = JSONEncoder)
 
 
-
-
-    
-    
 @login_required
 def dashboard(request):
-    
-    this_user = request.user
-    now = datetime.now()
-        
-    income_count = Income.objects.filter(user__username = this_user).all().count()
-    income_field = Income.objects.filter(user__username = this_user)
-    total_income_dict = Income.objects.filter(user=this_user).aggregate(Sum("amount"))
-    for key, value in total_income_dict.items():
-        total_income = value
-    
-    
-    expense_count = Expense.objects.filter(user__username = this_user).all().count()
-    expense_field = Expense.objects.filter(user__username = this_user)
-    total_expense_dict = Expense.objects.filter(user=this_user).aggregate(Sum("amount"))
-    for key, value in total_expense_dict.items():
-        total_expense = value
-        
-    context = {
-        "income_count" : income_count,
-        "income_field" : income_field,  
-        "expense_count" : expense_count,
-        "expense_field" : expense_field,
-        "now" : now,
-        "total_income" : total_income,
-        "total_expense" : total_expense,
-    }
-    
-    return render(request, "web/dashboard.html", context)
+    return render(request, "web/dashboard.html")

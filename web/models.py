@@ -34,7 +34,7 @@ class Expense(models.Model):
     
     
     class Meta:
-        ordering = ["id", "date", "amount"]
+        ordering = ["date", "amount"]
         
     
     def __str__(self):
@@ -49,7 +49,7 @@ class Income(models.Model):
     
     
     class Meta:
-        ordering = ["id", "date", "amount"]
+        ordering = ["date", "amount"]
         
     
     def __str__(self):
