@@ -5,7 +5,9 @@ from django.contrib import admin
 from .models import Expense
 from .models import Income
 from .models import Token
-from .models import userRegister
+from .models import UserRegister
+from .models import Member
+
 
 @admin.register(Token)
 class UserTokenAdmin(admin.ModelAdmin):
@@ -22,6 +24,11 @@ class IncomeAdmin(admin.ModelAdmin):
     list_display = ["text", "user", "amount", "date"]
 
 
-@admin.register(userRegister)
+@admin.register(UserRegister)
+class UserAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Member)
 class UserAdmin(admin.ModelAdmin):
     pass

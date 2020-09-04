@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, JsonResponse
 from json.encoder import JSONEncoder
 from django.views.decorators.csrf import csrf_exempt
-from .models import User, Token, Income, Expense, userRegister
+from .models import User, Token, Income, Expense, UserRegister
 from datetime import datetime
 
 from django.core import serializers
@@ -55,7 +55,7 @@ def register(request):
             email = request.POST['email']
             password = make_password(request.POST['password'])
             username = request.POST['username']
-            temporarycode = userRegister(
+            temporarycode = UserRegister(
                 email=email, time=now, code=code, username=username, password=password)
             temporarycode.save()
             # message = PMMail(api_key=settings.POSTMARK_API_TOKEN,
@@ -82,14 +82,14 @@ def register(request):
             return render(request, 'registration/register.html', context)
     elif "code" in request.GET:  # user clicked on code
         code = request.GET['code']
-        if userRegister.objects.filter(code=code).exists():  # if code is in temporary db, read the data and create the user
-            new_temp_user = userRegister.objects.get(code=code)
+        if UserRegister.objects.filter(code=code).exists():  # if code is in temporary db, read the data and create the user
+            new_temp_user = UserRegister.objects.get(code=code)
             newuser = User.objects.create(username=new_temp_user.username, password=new_temp_user.password,
                                           email=new_temp_user.email)
             this_token = get_random_string(length=48)
             token = Token.objects.create(user=newuser, token=this_token)
             # delete the temporary activation code from db
-            userRegister.objects.filter(code=code).delete()
+            UserRegister.objects.filter(code=code).delete()
             context = {
                 'message': 'اکانت شما ساخته شد. توکن شما {} است. آن را ذخیره کنید چون دیگر نمایش داده نخواهد شد! جدی!'.format(
                     this_token)}
