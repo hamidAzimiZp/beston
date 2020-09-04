@@ -249,6 +249,7 @@ def dashboard(request):
     this_user = request.user
     now = datetime.now()
     
+    
     def setExpese():
         if "text" in request.POST and "amount" in request.POST :
             
@@ -265,10 +266,6 @@ def dashboard(request):
             post_content.save()
     
     
-    if "expense" in request.POST:
-        setExpese()
-        
-    
     def setIncome():
         if "text" in request.POST and "amount" in request.POST :
             
@@ -284,7 +281,7 @@ def dashboard(request):
                                     date=this_date)
             post_content.save()
     
-    print(request.POST)
+    
     if "expense" in request.POST:
         setExpese()
         

@@ -18,7 +18,11 @@
                 <div class="text-center">
                     <div class="alert alert-info this_close">
                         <a href="#" class="close">&times;</a>
-                        خوش آمدید {{ user.username }} 
+                        <p class="p-1">
+                            {{ user.username }} به پنل کاربری خوش آمدی
+از الان دیگه میتونی دخل و خرج خودتو یادداشت کنی و هر زمان که بخوای بهشون دسترسی داشته باشی
+برای وارد کردن درآمد از فرم سبز استفاده کن و برای خرج هات از فرم نارنجی مطمعنم که از پسش بر میای :)
+                        </p>
                     </div>
                 </div>
             </div>
@@ -51,7 +55,7 @@
                             <input type="number" class="form-control" name="amount" id="this_money" placeholder="مقدار پول اضافه شده (به تومان)">
 
                             <label for="this_date">تاریخ</label>
-                            <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" class="form-control" name="date" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
+                            <input  class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
 
                             <input type="hidden" name="income" id="incomeSend" value="1">
 
