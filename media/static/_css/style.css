@@ -30,6 +30,7 @@ ul.nav_items_custom{
     position: relative;
     right: 30px;
     top: 5px;
+    width: 20em;
 }
 
 .nav_items_custom li {
