@@ -11,8 +11,7 @@ urlpatterns = [
     re_path(r"^submit/income/$", views.submit_income, name = "submitIncome"),
     path("register/", views.register, name = "register"),
     path('login/', views.login, name='login'),
-    # path("account/passwordReset", views.passwordReset, name = "passwordReset"),
-    # path('logout/', views.logout, name='logout'),   
     path("account/dashboard/", views.dashboard, name = "dashboard"),
+    path("account/dashboard/status", views.user_status, name = "userStatus"),
     
 ]

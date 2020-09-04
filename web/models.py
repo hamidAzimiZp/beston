@@ -3,12 +3,12 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 from django.db.models import OneToOneField
-
+import datetime
 
 class UserRegister(models.Model):
     code = models.CharField(max_length=32)
     email = models.CharField(max_length=120)
-    time = models.DateTimeField()
+    time = models.DateTimeField(default=datetime.date.today)
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)  # TODO: do not save password
     
@@ -20,7 +20,7 @@ class UserRegister(models.Model):
 class Member(models.Model):
     code = models.CharField(max_length=32)
     email = models.CharField(max_length=120)
-    time = models.DateTimeField()
+    time = models.DateTimeField(default=datetime.date.today)
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)  # TODO: do not save password
     
@@ -46,7 +46,7 @@ class Expense(models.Model):
     
     
     class Meta:
-        ordering = ["date", "amount"]
+        ordering = ["id", "date", "amount"]
         
     
     def __str__(self):
@@ -61,7 +61,7 @@ class Income(models.Model):
     
     
     class Meta:
-        ordering = ["date", "amount"]
+        ordering = ["id", "date", "amount"]
         
     
     def __str__(self):

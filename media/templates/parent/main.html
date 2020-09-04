@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="{% static '_css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static '_css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static '_css/style.css' %}?{% now 'U' %}" >
-        
         <script src="{% static '_js/jquery-3.5.0.min.js' %}"></script>
         <script src="{% static '_js/bootstrap.min.js' %}"></script>
-        <script src="{% static '_js/custom.js' %}"></script>
+        <script src="{% static '_js/custom.js' %}" defer></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>            
         
         {% block head %}
 
@@ -29,5 +29,6 @@
         {% block body %}
 
         {% endblock %}
+        
     </body>
 </html>

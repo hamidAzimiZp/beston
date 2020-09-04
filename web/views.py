@@ -212,11 +212,7 @@ def submit_income(request):
 
 
 
-
-    
-    
-@login_required
-def dashboard(request):
+def user_status(request):
     
     this_user = request.user
     now = datetime.now()
@@ -244,4 +240,59 @@ def dashboard(request):
         "total_expense" : total_expense,
     }
     
+    return render(request, "web/dashboard_status.html", context)
+    
+    
+    
+@login_required
+def dashboard(request):
+    this_user = request.user
+    now = datetime.now()
+    
+    def setExpese():
+        if "text" in request.POST and "amount" in request.POST :
+            
+            this_text = request.POST["text"]
+            this_amount = request.POST["amount"]
+                
+            if not "date" in request.POST:
+                this_date = datetime.now()
+            else:
+                this_date = request.POST["date"]
+            
+            post_content = Expense(user = this_user, text = this_text, amount = this_amount,
+                                    date=this_date)
+            post_content.save()
+    
+    
+    if "expense" in request.POST:
+        setExpese()
+        
+    
+    def setIncome():
+        if "text" in request.POST and "amount" in request.POST :
+            
+            this_text = request.POST["text"]
+            this_amount = request.POST["amount"]
+                
+            if not "date" in request.POST:
+                this_date = datetime.now()
+            else:
+                this_date = request.POST["date"]
+            
+            post_content = Income(user = this_user, text = this_text, amount = this_amount,
+                                    date=this_date)
+            post_content.save()
+    
+    print(request.POST)
+    if "expense" in request.POST:
+        setExpese()
+        
+    elif "income" in request.POST:
+        setIncome()
+        
+        
+    context = {
+        "now" : now
+    }
     return render(request, "web/dashboard.html", context)

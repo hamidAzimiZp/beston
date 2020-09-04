@@ -1,104 +1,93 @@
 {% extends "parent/main.html" %}
 {% load static %}
 
-{% block title %}Dashboard | wellcome{% endblock %}
+{% block title %} Bestoon|Dashboard{% endblock %}
 
 {% block styles %}
     <style>
-        table, tr, td{
-            padding : 10px;
-        }
-        table{
-            text-align: center;
-            caption-side: above;
-        }
-        td.date{
-            direction: ltr;
+        label{
+            padding-right: 3px;
         }
     </style>
 {% endblock %}
 
 {% block body %}
-    <p class="text-center">
-        خوش آمدید {{ user.username }} 
-    </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <div class="alert alert-info this_close">
+                        <a href="#" class="close">&times;</a>
+                        خوش آمدید {{ user.username }} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {% if message and token %}
+    <!-- {% if message and token %}
         <pre class="text-center">
             <code>{{ message }}</code>
             <br><br>
             توکن شما : <code>{{ token }}</code>
         </pre>
-    {% endif %}
+    {% endif %} -->
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-8">
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ</td>
-                        <td>مقدار درآمد</td>
-                        <td>نام</td>
-                        <td>آیدی</td>
-                    </tr>
-                    {% for item in income_field %}
-                        <tr>
-                            <td class="date">{{ item.date }}</td>
-                            <td>{{ item.amount }}</td>
-                            <td>{{ item.text }}</td>
-                            <td>{{ item.id }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-                <br>
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ امروز</td>
-                        <td>جمع درآمد</td>
-                        <td>تعداد</td>
-                    </tr>
-                    <tr>
-                        <td class="date">{{ now }}</td>  
-                        <td>{{ total_income }}</td>
-                        <td>{{ expense_count }}</td>
-                    </tr>
-                </table>
+            <div class="col-12 col-lg-5 mt-4">
+                <div class="content p-3 rounded shadow-sm" style="background-color : #4aff90">
+                    <div class="content-header bg-info p-3 text-center text-white rounded">
+                        افزودن عنوان جدید به دخل
+                    </div>
+                    <div class="content-body mt-2">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <label for="this_text">عنوان</label>
+                            <input type="text" class="form-control" name="text" id="this_text" placeholder="عنوان مورد نظر خود را وارد نمایید">
+
+                            <label for="this_money">مقدار</label>
+                            <input type="number" class="form-control" name="amount" id="this_money" placeholder="مقدار پول اضافه شده (به تومان)">
+
+                            <label for="this_date">تاریخ</label>
+                            <input type="text" onfocus="(this.type = 'date')" onblur="(this.type = 'text')" class="form-control" name="date" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
+
+                            <input type="hidden" name="income" id="incomeSend" value="1">
+
+                            <div class="this_submit_btn p-3 mt-2 text-center">
+                                <input type="submit" class="btn btn-outline-dark px-5" value="ثبت">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br><br><br>
-        <hr>
-        <br><br><br>
-        <div class="row justify-content-center">
-            <div class="col-12 col-8">
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ</td>
-                        <td>مقدار خرج شده</td>
-                        <td>نام</td>
-                        <td>آیدی</td>
-                    </tr>
-                    {% for item in expense_field %}
-                        <tr>
-                            <td class="date">{{ item.date }}</td>
-                            <td>{{ item.amount }}</td>
-                            <td>{{ item.text }}</td>
-                            <td>{{ item.id }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-                <br>
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ امروز</td>
-                        <td>جمع مخارج</td>
-                        <td>تعداد</td>
-                    </tr>
-                    <tr>
-                        <td class="date">{{ now }}</td>  
-                        <td>{{ total_expense }}</td>
-                        <td>{{ expense_count }}</td>
-                    </tr>
-                </table>
+            <div class="col-12 col-lg-5 mt-4">
+                <div class="content p-3 rounded shadow-sm" style="background-color : #ff896e">
+                    <div class="content-header bg-info p-3 text-center text-white rounded">
+                        افزودن عنوان جدید به خرج
+                    </div>
+                    <div class="content-body mt-2" id="ExponseForm">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <label for="this_text2">عنوان</label>
+                            <input type="text" class="form-control" name="text" id="this_text2" placeholder="عنوان مورد نظر خود را وارد نمایید">
+
+                            <label for="this_money2">مقدار</label>
+                            <input type="number" class="form-control" name="amount" id="this_money2" placeholder="مقدار پول خرج شده (به تومان)">
+
+                            <label for="this_date2">تاریخ</label>
+                            <input  class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date2" placeholder="برای وارد کردن تاریخ کلیک کنید">
+
+                            <input type="hidden" name="expense" id="expenseSend" value="2">
+
+                            <div class="this_submit_btn p-3 mt-2 text-center">
+                                <input type="submit" class="btn btn-outline-dark px-5" value="ثبت">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
