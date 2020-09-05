@@ -1,5 +1,11 @@
 body{
     text-align: right;
+    background-color: #ffcfdf;
+    background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
+}
+*{
+    margin: 0;
+    padding: 0;
 }
 a{
     text-decoration: none !important;
@@ -7,6 +13,7 @@ a{
 .registerForm{
     box-shadow: 0 0 15px 0px #000;
     border-radius: 5px;
+    background:#fff;
 }
 
 ul.nav_item_custom{
@@ -36,7 +43,8 @@ ul.nav_items_custom{
 .nav_items_custom li {
     display: inline;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 18px;
+
 }
 .nav_items_custom li a{
     text-decoration: none;
@@ -46,4 +54,72 @@ ul.nav_items_custom{
 
 .nav_items_custom li:hover a , .nav_item_custom li:hover a{
     color : cyan
+}
+
+
+/* *************
+nav for small clients 
+************ */
+
+.my_nav2{
+    height: 100%;
+    background-color: #343a40;
+    width: 300px !important;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    margin-right: -300px;
+    transition : 0.7s linear all
+}
+.show_nav{
+    margin-right : 0
+}
+.navButton{
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    background: #343a40;
+    font-size: 18px;
+    color: #fff;
+    display: flex;
+    padding: 4px;
+}
+.nav_header .user_img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px solid #9a9a9a;
+    position: relative;
+    overflow: hidden;    
+    box-shadow: 0 0px 1px 0px #9a9a9a;
+    margin: auto;
+}
+.nav_header .user_img img{
+    position: absolute;
+}
+.user_name{
+    margin-top: 4px;
+    text-align: center;
+    padding: 3px;
+    background: #414748 ;
+}
+
+.list_item{
+    padding-left: 7px;
+}
+.list_item li{
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    border-bottom: 1px solid aqua;
+    padding-right: 3px;
+    padding-bottom: 3px;
+}
+.list_item li a{
+    color: #fff;
+    transition : 0.4s linear all;
+}
+
+.list_item li:hover a{
+    color: cyan;
 }

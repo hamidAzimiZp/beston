@@ -27,8 +27,10 @@
     </head> 
     <body>
         {% include "partials/navigation.html" %}
-        {% block body %}
+        <div class="wrapper">
+            {% block body %}
 
-        {% endblock %}
+            {% endblock %}
+        </div>
     </body>
 </html>

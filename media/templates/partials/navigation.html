@@ -1,13 +1,11 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2">
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a href="{% url 'web:index' %}" class="navbar-brand" style="cursor: pointer;">Beston</a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar" name="button">
-        <span class="navbar-toggler-icon"></span>
-    </button>
     <div class="collapse navbar-collapse text-left position-absolute pl-2" id="myNavbar" style="left: 0;width:100%">
         <div class="container-fluid">
             <div class="row justify-content-between mt-3" style="width:100%">
                 <div class="col-2">
-                    <ul {% if user.is_authenticated %} class="nav_items_custom" {% else %} class="nav_item_custom" {% endif %}>
+                    <ul {% if user.is_authenticated %} class="nav_items_custom" {% else %} class="nav_item_custom" style="margin-right: 30px;" {% endif %}>
                         <li>
                             <a href="{% url 'web:index' %}">خانه</a>
                         </li>
@@ -26,14 +24,14 @@
                         <li>
                             {% if user.is_authenticated %}
                                 <a href="{% url 'logout' %}">
-                                    <button type="button" class="btn btn-outline-danger" style="margin-right: 8px;"> Logout </button>
+                                    <button type="button" class="btn btn-outline-danger" style="margin-right: 8px;"> خروج </button>
                                 </a>
                             {% else %}
                                 <a href="{% url 'web:login' %}">
-                                    <button type="button" class="btn btn-outline-info" style="margin-right: 8px;"> Sign In</button>
+                                    <button type="button" class="btn btn-outline-info" style="margin-right: 8px;"> ورود </button>
                                 </a>
                                 <a href="{% url 'web:register' %}">
-                                    <button type="button" class="btn btn-outline-info" style="margin-right: 8px;"> Sign Up</button>
+                                    <button type="button" class="btn btn-outline-info" style="margin-right: 8px;"> ثبت نام </button>
                                 </a>
                             {% endif %}
                         </li>
@@ -42,4 +40,50 @@
             </div>
         </div>
     </div>
-  </nav>
+</nav>
+
+<!-- nav for small devices -->
+<nav class="my_nav2 d-block text-white">
+    <div class="nav_content">
+        <div class="nav_header">
+            <div class="user_img" {% if not user.is_authenticated %} style="border: none; box-shadow:none" {% endif %} >
+                {% if user.is_authenticated %}
+                    <img src="{% static '_images/icons/person.png' %} "  alt="{{ user.username }}">
+                {% else %}
+                    <img src="{% static '_images/icons/coin.png' %}" alt="beston" >
+                {% endif %}
+            </div>
+            <p class="user_name">
+                {% if user.is_authenticated %}
+                    {{ user.username }} خوش آمدید
+                {% else %}
+                    بستون
+                {% endif %}
+            </p>
+        </div>
+        <div class="nav_body">
+            <ul class="list_item">
+                <li><a href="{% url 'web:index' %}">خانه</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'web:dashboard' %}">داشبورد</a></li>
+                    <li><a href="{% url 'web:userStatus' %}">وضعیت</a></li>
+                    <a href="{% url 'logout' %}">
+                        <button type="button" class="btn btn-outline-danger" style="margin-right: 8px;"> خروج </button>
+                    </a>            
+                {% else %}
+                    <a href="{% url 'web:login' %}">
+                        <button type="button" class="btn btn-outline-info" style="margin-right: 8px;"> ورود </button>
+                    </a>
+                    <a href="{% url 'web:register' %}">
+                        <button type="button" class="btn btn-outline-success" style="margin-right: 8px;"> ثبت نام </button>
+                    </a>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <span class="navButton rounded-left">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </span>
+</nav>

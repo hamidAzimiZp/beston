@@ -38,9 +38,9 @@
     {% endif %} -->
 
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-between">
             <div class="col-12 col-lg-5 mt-4">
-                <div class="content p-3 rounded shadow-sm" style="background-color : #4aff90">
+                <div class="content p-3 rounded shadow-sm" style="background-color : #fff">
                     <div class="content-header bg-info p-3 text-center text-white rounded">
                         افزودن عنوان جدید به دخل
                     </div>
@@ -49,13 +49,13 @@
                             {% csrf_token %}
 
                             <label for="this_text">عنوان</label>
-                            <input type="text" class="form-control" name="text" id="this_text" placeholder="عنوان مورد نظر خود را وارد نمایید">
+                            <input type="text" required class="form-control" name="text" id="this_text" placeholder="عنوان مورد نظر خود را وارد نمایید">
 
                             <label for="this_money">مقدار</label>
-                            <input type="number" class="form-control" name="amount" id="this_money" placeholder="مقدار پول اضافه شده (به تومان)">
+                            <input type="number" required class="form-control" name="amount" id="this_money" placeholder="مقدار پول اضافه شده (به تومان)">
 
                             <label for="this_date">تاریخ</label>
-                            <input  class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
+                            <input  class="form-control" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
 
                             <input type="hidden" name="income" id="incomeSend" value="1">
 
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-5 mt-4">
-                <div class="content p-3 rounded shadow-sm" style="background-color : #ff896e">
+                <div class="content p-3 rounded shadow-sm" style="background-color : #fff">
                     <div class="content-header bg-info p-3 text-center text-white rounded">
                         افزودن عنوان جدید به خرج
                     </div>
@@ -76,13 +76,13 @@
                             {% csrf_token %}
 
                             <label for="this_text2">عنوان</label>
-                            <input type="text" class="form-control" name="text" id="this_text2" placeholder="عنوان مورد نظر خود را وارد نمایید">
+                            <input type="text" required class="form-control" name="text" id="this_text2" placeholder="عنوان مورد نظر خود را وارد نمایید">
 
                             <label for="this_money2">مقدار</label>
-                            <input type="number" class="form-control" name="amount" id="this_money2" placeholder="مقدار پول خرج شده (به تومان)">
+                            <input type="number" required class="form-control" name="amount" id="this_money2" placeholder="مقدار پول خرج شده (به تومان)">
 
                             <label for="this_date2">تاریخ</label>
-                            <input  class="form-control" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date2" placeholder="برای وارد کردن تاریخ کلیک کنید">
+                            <input  class="form-control" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date2" placeholder="برای وارد کردن تاریخ کلیک کنید">
 
                             <input type="hidden" name="expense" id="expenseSend" value="2">
 
