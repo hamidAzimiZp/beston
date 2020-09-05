@@ -1,6 +1,6 @@
 body{
     text-align: right;
-    background-color: #ffcfdf;
+    /* background: #ffcfdf no-repeat; */
     background-image: linear-gradient(315deg, #ffcfdf 0%, #b0f3f1 74%);
 }
 *{
@@ -14,6 +14,10 @@ a{
     box-shadow: 0 0 15px 0px #000;
     border-radius: 5px;
     background:#fff;
+}
+
+li{
+    list-style-type: none   ;
 }
 
 ul.nav_item_custom{
