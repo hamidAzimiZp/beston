@@ -70,7 +70,7 @@ class Income(models.Model):
 
 class Slider(models.Model):
     caption = models.CharField(max_length = 100, help_text = "optional", null = True, blank = True)
-    image = models.ImageField(upload_to = "static/_images/")
+    image = models.ImageField(upload_to = "media/static/_images/slider/")
     date = models.DateTimeField()
     
     
