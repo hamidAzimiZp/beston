@@ -9,11 +9,15 @@
         <link rel="stylesheet" href="{% static '_css/bootstrap-reboot.css' %}">
         <link rel="stylesheet" href="{% static '_css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static '_css/style.css' %}?{% now 'U' %}" >
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% block css %}{% endblock %}
+
         <script src="{% static '_js/jquery-3.5.0.min.js' %}"></script>
+        <script src="{% static '_js/jquery.mobile-events.min.js' %}"></script>
         <script src="{% static '_js/bootstrap.min.js' %}"></script>
         <script src="{% static '_js/custom.js' %}" defer></script>
-
+        
+        {% block js %}{% endblock %}
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" 
         crossorigin="anonymous"></script>

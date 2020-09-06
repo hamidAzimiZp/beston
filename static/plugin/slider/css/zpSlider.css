@@ -1,0 +1,107 @@
+.zpSlider{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 99;
+  background-color: rgba(255, 0, 0,0.5);
+}
+.zpSlider ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zpSlider ul li{
+  position: absolute;
+  top: 0;
+  height: 0;
+  width: 100%;
+  height: 100%;
+  display: none
+}
+.zpSlider ul li:first-child{
+  display: list-item;
+}
+.zpSlider ul li img{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.zpSlider div.counter{
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px 5px;
+  border-radius: 0 0 3px 0;
+  font-size: 9px;
+  font-family: tahoma;
+  background-color: rgba(255,255,255,0.5)
+}
+.zpSlider span.next, .zpSlider span.prev{
+    position: absolute;
+    top: 40%;
+    z-index: 99999;
+    opacity: 0.3;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+}
+.zpSlider .next:hover, .zpSlider .prev:hover{
+  cursor: pointer;
+  opacity: 0.7
+}
+.zpSlider span.next{
+  right: 5px;
+  font-size: 35px;
+  color:#fff;
+}
+.zpSlider span.prev{
+  left: 5px;
+  font-size: 35px;
+  color:#fff;
+}
+.zpSlider div.buttonsRow{
+  z-index: 9999;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
+.zpSlider div.buttonsRow span{
+  float: left;
+  width: 11px;
+  height: 11px;
+  font-size: 6px;
+  font-family: tahoma;
+  color: #777;
+  background-color: #fff;
+  opacity: 0.5;
+  margin-right: 3px;
+  padding: 1px;
+  border-radius: 7px;
+  text-align: center;
+}
+.zpSlider div.buttonsRow span:hover, .zpSlider .buttonsRow span.curr{
+  opacity: 0.9;
+  cursor: pointer;
+  color: #555
+}
+
+.zpSlider .sliderCaption{
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  background-color: rgba(0,0,0,0.7);
+  width: 100%;
+  height: 42px;
+  z-index: 999;
+  font-size: 20px;
+  font-family: "iranYekan";
+  text-align: right;
+  direction: rtl;
+  line-height: 40px;
+  padding-right: 10px;
+  box-sizing: border-box;
+}

@@ -1,9 +1,11 @@
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404
 from django.http import HttpResponse, JsonResponse
 from json.encoder import JSONEncoder
 from django.views.decorators.csrf import csrf_exempt
-from .models import User, Token, Income, Expense, UserRegister
+from .models import User, Token, Income, Expense, UserRegister, Slider
 from datetime import datetime
+from django.views import generic
+
 
 from django.core import serializers
 from django.conf import settings
@@ -29,6 +31,7 @@ def index(request):
 # create random string for Token
 random_str = lambda N: ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(N))
 
+from django.conf import settings
 
 # login , (API) , returns : JSON = statuns (ok|error) and token
 
@@ -244,12 +247,12 @@ def user_status(request):
     return render(request, "web/dashboard_status.html", context)
     
     
-    
+ 
 @login_required
 def dashboard(request):
     this_user = request.user
     now = datetime.now()
-    
+    context  = {}
     
     def setExpese():
         if "text" in request.POST and "amount" in request.POST :
@@ -283,14 +286,24 @@ def dashboard(request):
             post_content.save()
     
     
+    def SetSlider():
+        slider = get_list_or_404(Slider)
+        
+        context["slider"] = slider
+        return context
+        
+        
     if "expense" in request.POST:
         setExpese()
         
     elif "income" in request.POST:
         setIncome()
-        
-        
-    context = {
-        "now" : now
-    }
+    
+    # send image and caption to template
+    SetSlider()
+    
+    context["now"] = now
+    
     return render(request, "web/dashboard.html", context)
+
+
