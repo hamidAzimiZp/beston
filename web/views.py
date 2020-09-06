@@ -67,9 +67,7 @@ def register(request):
             #                 tag="account request")
             # message.send()
             # message = 'ایمیلی حاوی لینک فعال سازی اکانت به شما فرستاده شده، لطفا پس از چک کردن ایمیل، روی لینک کلیک کنید.'
-            message = 'قدیم ها ایمیل فعال سازی می فرستادیم ولی الان شرکتش ما رو تحریم کرده (: پس راحت و بی دردسر'
-            body = " برای فعال کردن اکانت بستون خود روی لینک روبرو کلیک کنید: \n<a href=\"{0}?code={1}\">\"{0}?code={1}\"</a>".format(request.build_absolute_uri('/register/'), code)
-            message = message + body
+            message = "برای فعال کردن اکانت بستون خود <a href=\"{0}?code={1}\">اینجا</a> کلیک کنید".format(request.build_absolute_uri('/register/'), code)
             context = {
                 'message': message 
                 }
@@ -77,9 +75,10 @@ def register(request):
         
         else:
             context = {
-                'message': 'متاسفانه این نام کاربری قبلا استفاده شده است. از نام کاربری دیگری استفاده کنید. ببخشید که فرم ذخیره نشده. درست می شه'}  # TODO: forgot password
+                'message': 'متاسفانه این نام کاربری قبلا استفاده شده است. از نام کاربری دیگری استفاده کنید.'}  # TODO: forgot password
             # TODO: keep the form data
             return render(request, 'registration/register.html', context)
+        
     elif "code" in request.GET:  # user clicked on code
         code = request.GET['code']
         if UserRegister.objects.filter(code=code).exists():  # if code is in temporary db, read the data and create the user
@@ -90,9 +89,11 @@ def register(request):
             token = Token.objects.create(user=newuser, token=this_token)
             # delete the temporary activation code from db
             UserRegister.objects.filter(code=code).delete()
+            
+            message = "اکانت شما ساخته شد برای ورود <a href=/{}>اینجا</a> کلیک کنید".format("login")
             context = {
-                'message': 'اکانت شما ساخته شد. توکن شما {} است. آن را ذخیره کنید چون دیگر نمایش داده نخواهد شد! جدی!'.format(
-                    this_token)}
+                "message" : message    
+            }
             return render(request, 'registration/register.html', context)
         else:
             context = {
