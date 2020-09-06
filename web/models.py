@@ -66,3 +66,17 @@ class Income(models.Model):
     
     def __str__(self):
         return "<{0}>-({1})-<{2} T>".format(self.user, self.text, self.amount)
+    
+
+class Slider(models.Model):
+    caption = models.CharField(max_length = 100, help_text = "optional", null = True, blank = True)
+    image = models.ImageField(upload_to = "static/_images/")
+    date = models.DateTimeField()
+    
+    
+    class Meta:
+        ordering = ["id", "date"]
+        
+    
+    def __str__(self):
+        return "{}".format(self.image)

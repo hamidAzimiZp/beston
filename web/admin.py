@@ -7,7 +7,7 @@ from .models import Income
 from .models import Token
 from .models import UserRegister
 from .models import Member
-
+from .models import Slider
 
 @admin.register(Token)
 class UserTokenAdmin(admin.ModelAdmin):
@@ -31,4 +31,9 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Member)
 class UserAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
     pass
