@@ -1,3 +1,3 @@
 Beston project 
 
-A simple Income anf Expense system
+A simple Income and Expense system
