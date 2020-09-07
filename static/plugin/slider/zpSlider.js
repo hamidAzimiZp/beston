@@ -100,7 +100,8 @@ by hamidZp
        var prevTag = $('<i>').css({top:topDistance, position:"absolute", top:"50%", left:"0", padding:"3px"}).addClass('prev fa fa-caret-left')
        nextTag.css("fontSize", "24px")
        prevTag.css("fontSize", "24px")
-
+       nextTag.addClass("slider_arrow")
+       prevTag.addClass("slider_arrow")
        if (options.showNextPrev){
          slider.append(nextTag,prevTag);
          nextTag.click(function(){

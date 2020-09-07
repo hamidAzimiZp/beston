@@ -127,6 +127,16 @@ nav for small clients
     color: cyan;
 }
 
+
+/* zpSlider */
+.slider_arrow{
+    opacity: 0.5 !important;
+    transition : 0.4s linear all
+}
+.slider_arrow:hover{
+    opacity: 1 !important;
+}
+
 /* news slider */
 .image_news{
     overflow: hidden;

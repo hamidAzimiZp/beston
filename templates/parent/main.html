@@ -31,10 +31,13 @@
     </head> 
     <body>
         {% include "partials/navigation.html" %}
+        
         <div class="wrapper">
             {% block body %}
 
             {% endblock %}
+
+            {% include "partials/footer.html"%}
         </div>
     </body>
 </html>

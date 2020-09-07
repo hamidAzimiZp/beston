@@ -26,7 +26,31 @@ from django.contrib.auth import login as auth_login
 from django.db.models import Sum
 
 def index(request):
-    return render(request, "web/index.html")
+    context = {}
+    
+    
+    def setSlider():
+        slider = get_list_or_404(Slider)
+        
+        context["slider"] = slider
+        return context
+    
+    
+    def setNews():
+        news = get_list_or_404(News)
+        context["news"] = news
+            
+        return context
+        
+    
+    # send image and caption to template
+    setSlider()
+    
+    # send news to template
+    setNews()
+    
+    
+    return render(request, "web/index.html", context)
 
 # create random string for Token
 random_str = lambda N: ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(N))
