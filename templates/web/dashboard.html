@@ -20,6 +20,19 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="aler alert-info shadow-sm p-2">
+                    <p class="text-center">
+                        اینجا به راحتی میتونی دخل و خرج خودتو با استفاده از این دو فرم وارد کنی!
+                        <br>
+                        برای دیدن جزییات بعد از وارد کردن اطلاعات میتونی به تب وضعیت بری :) 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-12 col-lg-5 mt-4">
@@ -38,7 +51,7 @@
                             <input type="number" required class="form-control" name="amount" id="this_money" placeholder="مقدار پول اضافه شده (به تومان)">
 
                             <label for="this_date">تاریخ</label>
-                            <input  class="form-control" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
+                            <input  class="form-control" name = "this_date" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date" placeholder="برای وارد کردن تاریخ کلیک کنید">
 
                             <input type="hidden" name="income" id="incomeSend" value="1">
 
@@ -65,7 +78,7 @@
                             <input type="number" required class="form-control" name="amount" id="this_money2" placeholder="مقدار پول خرج شده (به تومان)">
 
                             <label for="this_date2">تاریخ</label>
-                            <input  class="form-control" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date2" placeholder="برای وارد کردن تاریخ کلیک کنید">
+                            <input  class="form-control" name = "this_date" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="this_date2" placeholder="برای وارد کردن تاریخ کلیک کنید">
 
                             <input type="hidden" name="expense" id="expenseSend" value="2">
 
@@ -78,6 +91,6 @@
             </div>
         </div>
     </div>
-    <br><br><br><br><br><br>
+    <br><br>
     <br><br>
 {% endblock %}

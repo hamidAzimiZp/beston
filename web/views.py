@@ -285,10 +285,10 @@ def dashboard(request):
             this_text = request.POST["text"]
             this_amount = request.POST["amount"]
                 
-            if not "date" in request.POST:
+            if not "this_date" in request.POST:
                 this_date = datetime.now()
             else:
-                this_date = request.POST["date"]
+                this_date = request.POST["this_date"]
             
             post_content = Expense(user = this_user, text = this_text, amount = this_amount,
                                     date=this_date)
@@ -301,29 +301,15 @@ def dashboard(request):
             this_text = request.POST["text"]
             this_amount = request.POST["amount"]
                 
-            if not "date" in request.POST:
+            if not "this_date" in request.POST:
                 this_date = datetime.now()
             else:
-                this_date = request.POST["date"]
+                this_date = request.POST["this_date"]
             
             post_content = Income(user = this_user, text = this_text, amount = this_amount,
                                     date=this_date)
             post_content.save()
-    
-    
-    def setSlider():
-        slider = get_list_or_404(Slider)
-        
-        context["slider"] = slider
-        return context
-    
-    
-    def setNews():
-        news = get_list_or_404(News)
-        context["news"] = news
             
-        return context
-        
         
     if "expense" in request.POST:
         setExpese()
@@ -331,11 +317,6 @@ def dashboard(request):
     elif "income" in request.POST:
         setIncome()
     
-    # send image and caption to template
-    setSlider()
-    
-    # send news to template
-    setNews()
     
     context["now"] = now
     
