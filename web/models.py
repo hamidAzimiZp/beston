@@ -81,3 +81,18 @@ class Slider(models.Model):
     
     def __str__(self):
         return "{}".format(self.image)
+    
+    
+class News(models.Model):
+    
+    title = models.CharField(max_length=250)
+    text = models.TextField()
+    date = models.DateTimeField()
+    
+    
+    class Meta:
+        ordering = ["date"]
+        
+        
+    def __str__(self):
+        return "{}  <{}>".format(self.title, self.date)

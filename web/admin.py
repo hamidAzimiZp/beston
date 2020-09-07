@@ -8,6 +8,8 @@ from .models import Token
 from .models import UserRegister
 from .models import Member
 from .models import Slider
+from .models import News
+
 
 @admin.register(Token)
 class UserTokenAdmin(admin.ModelAdmin):
@@ -35,5 +37,9 @@ class UserAdmin(admin.ModelAdmin):
 
 
 @admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(News)
 class SliderAdmin(admin.ModelAdmin):
     pass
