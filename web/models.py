@@ -86,7 +86,10 @@ class Slider(models.Model):
 class News(models.Model):
     
     title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length =250, blank = True)
+    description = models.CharField(max_length=450, blank = True)
     text = models.TextField()
+    image = models.ImageField(upload_to = "static/_images/news/", blank = True)
     date = models.DateTimeField()
     
     

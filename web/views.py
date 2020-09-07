@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render, get_list_or_40
 from django.http import HttpResponse, JsonResponse
 from json.encoder import JSONEncoder
 from django.views.decorators.csrf import csrf_exempt
-from .models import User, Token, Income, Expense, UserRegister, Slider
+from .models import User, Token, Income, Expense, UserRegister, Slider, News
 from datetime import datetime
 from django.views import generic
 
@@ -250,6 +250,7 @@ def user_status(request):
  
 @login_required
 def dashboard(request):
+    
     this_user = request.user
     now = datetime.now()
     context  = {}
@@ -286,10 +287,17 @@ def dashboard(request):
             post_content.save()
     
     
-    def SetSlider():
+    def setSlider():
         slider = get_list_or_404(Slider)
         
         context["slider"] = slider
+        return context
+    
+    
+    def setNews():
+        news = get_list_or_404(News)
+        context["news"] = news
+            
         return context
         
         
@@ -300,7 +308,10 @@ def dashboard(request):
         setIncome()
     
     # send image and caption to template
-    SetSlider()
+    setSlider()
+    
+    # send news to template
+    setNews()
     
     context["now"] = now
     

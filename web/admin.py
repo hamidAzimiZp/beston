@@ -42,4 +42,5 @@ class SliderAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class SliderAdmin(admin.ModelAdmin):
-    pass
+    
+    prepopulated_fields = {"slug" : ("title",)}
