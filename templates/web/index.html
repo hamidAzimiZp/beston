@@ -10,61 +10,164 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid mt-4">
+   <header>
+    <div class="container-fluid my_header">
         <div class="row justify-content-center">
-            <div class="col-12 col-md-10">
-              <div class="alert alert-info p-3" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <p class="mr-4">
-                  این برنامه شدیداً در حال توسعه است. اگر برنامه نویس هستی و دوست داری تغییرات اعمال کنی حتما <a href="https://github.com/hamidAzimiZp/bestoon">اینجا</a> رو ببین :)               
-                </p>
-              </div>
+            <div class="col-12 ">
+                <div class="cover"></div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-10 text-center text-white">
+                            <h1 class="" style="font-size: 55px;">
+                                بستون
+                            </h1>
+                            <br>
+                            <h2>
+                                مدیریت مالی ساده
+                            </h2>
+                            <br>
+                            <h3>
+                                همیشه بدون پول کجاست
+                            </h3>
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        {% if message %}
-        <div class="bs-callout bs-callout-info">
-          <h5>{{ message|safe }}</h5>
+        <div class="row justify-content-center mt-4 go-on">
+            <div class="col-12 col-lg-5">
+                <div class="content-search p-2 " onclick="focIn()">
+                    <input type="search" name="search" id="search" placeholder="دنبال چی میگردی...؟">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <script>
+                    function focIn(){
+                        $("#search").focus()
+                    }
+                </script>
+            </div>
         </div>
-        {% endif %}
-        
+        <div class="row justify-content-center subscription text-center text-white">
+            <div class="col-6">
+                <ul>
+                    <li>
+                        <div class="circle">
+                            <code>{{ count_of_users }}</code>
+                        </div>
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <br>
+                        <p>
+                             نفر مشترک با ما
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="row justify-content-center">
-          <div class="col-12 col-lg-9 col-xl-8 order-lg-1">
-              <div class="container">
-                  <div class="row justify-content-center">
-                      <div class="col-12 mt-2 mt-lg-0">
-                          <div class="zpSlider rounded shadow-lg" id="slider1" style="height: 385px">
-                              <ul>
-                                {% for item in slider %}
-                                  <li title="{{ item.caption }}">
-                                      <a href="#"><img src="/{{ item.image }}" alt="slide{{ item.id }}" ></a>
-                                  </li>
-                                {% endfor %}
-                              </ul>
+            <div class="col-12">
+                <a href="#main">
+                    <div class="header-arror-icon-to-down text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;" xml:space="preserve"><g><g><g><path d="M135.899,167.877c1.902,1.902,4.093,2.851,6.567,2.851s4.661-0.948,6.562-2.851L282.082,34.829 c1.902-1.903,2.847-4.093,2.847-6.567s-0.951-4.665-2.847-6.567L267.808,7.417c-1.902-1.903-4.093-2.853-6.57-2.853 c-2.471,0-4.661,0.95-6.563,2.853L142.466,119.622L30.262,7.417c-1.903-1.903-4.093-2.853-6.567-2.853 c-2.475,0-4.665,0.95-6.567,2.853L2.856,21.695C0.95,23.597,0,25.784,0,28.262c0,2.478,0.953,4.665,2.856,6.567L135.899,167.877z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFE529"></path><path d="M267.808,117.053c-1.902-1.903-4.093-2.853-6.57-2.853c-2.471,0-4.661,0.95-6.563,2.853L142.466,229.257L30.262,117.05 c-1.903-1.903-4.093-2.853-6.567-2.853c-2.475,0-4.665,0.95-6.567,2.853L2.856,131.327C0.95,133.23,0,135.42,0,137.893 c0,2.474,0.953,4.665,2.856,6.57l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854l133.054-133.046 c1.902-1.903,2.847-4.093,2.847-6.565c0-2.474-0.951-4.661-2.847-6.567L267.808,117.053z" data-original="#000000" class="active-path" data-old_color="#000000" fill="#FFE529"></path></g></g></g> </svg>
+                    </div>
+                </a>
+            </div>
+        </div>  
+    </div>
+   </header>
+    <main id="main">
+        <div class="container-fluid mt-4">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 ">
+                  <div class="alert alert-info p-3" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="mr-4">
+                      این برنامه شدیداً در حال توسعه است. اگر برنامه نویس هستی و دوست داری تغییرات اعمال کنی حتما <a href="https://github.com/hamidAzimiZp/bestoon">اینجا</a> رو ببین :)               
+                    </p>
+                  </div>
+                </div>
+            </div>
+    
+            {% if message %}
+            <div class="bs-callout bs-callout-info">
+              <h5>{{ message|safe }}</h5>
+            </div>
+            {% endif %}
+            
+            <div class="row justify-content-center">
+              <div class="col-12 col-lg-9 col-xl-8 order-lg-1">
+                  <div class="container">
+                      <div class="row justify-content-center">
+                          <div class="col-12 mt-2 mt-lg-0">
+                              <div class="zpSlider rounded shadow-lg" id="slider1" style="height: 385px">
+                                  <ul>
+                                    {% for item in slider %}
+                                      <li title="{{ item.caption }}">
+                                          <a href="#"><img src="/{{ item.image }}" alt="slide{{ item.id }}" ></a>
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                              </div>
                           </div>
-                      </div>
-                      <div class="col-12 mt-3 d-none d-md-block ">
-                          <div class="news shadow-sm " >
-                              <div class="news_content rounded carousel slide carousel-fade" data-ride="carousel" data-interval="10000" style="background-color:#daffff">
+                          <div class="col-12 mt-3 d-none d-md-block ">
+                              <div class="news shadow-sm " >
+                                  <div class="news_content rounded carousel slide carousel-fade" data-ride="carousel" data-interval="10000" style="background-color:#daffff">
+                                      {% if news %}
+                                          <div class="carousel-inner rounded-right">
+                                              {% for item in news %}
+                                                  <div class="carousel-item text-right for_get_first">
+                                                      <div class="container p-0">
+                                                          <div class="row">
+                                                              <div class="col-5">
+                                                                  <div class="image_news">
+                                                                      <img src="/{{ item.image }}" alt="slider{{ item.id }}"width="280px" height="240px ">
+                                                                  </div>
+                                                              </div>
+                                                              <div class="col-7">
+                                                                  <div class="news-content-title text-center">
+                                                                      {{ item.title }}
+                                                                  </div>
+                                                                  <div class="news-content-body">
+                                                                      {{ item.description }}
+                                                                  </div>
+                                                                  <div class="news-content-footer">
+                                                                      <a href="#">
+                                                                          <button class="btn btn-outline-dark" style="width: 120px;height: 50px;">
+                                                                              ادامه...
+                                                                          </button>
+                                                                      </a>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              {% endfor %}
+                                          </div>
+                                      {% endif %}
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-12 mt-3 d-block d-md-none">
+                              <div class="news_content_small_client rounded carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
                                   {% if news %}
                                       <div class="carousel-inner rounded-right">
                                           {% for item in news %}
-                                              <div class="carousel-item text-right for_get_first">
-                                                  <div class="container p-0">
-                                                      <div class="row">
-                                                          <div class="col-5">
-                                                              <div class="image_news">
-                                                                  <img src="/{{ item.image }}" alt="slider{{ item.id }}"width="280px" height="240px ">
+                                              <div class="carousel-item  text-right for_get_first_small">
+                                                  <div class="container p-0" style="background-color:#daffff">
+                                                      <div class="row justify-content-center text-center">
+                                                          <div class="col-12">
+                                                              <div class="image_small_news">
+                                                                  <img src="/{{ item.image }}" alt="slider{{ item.id }}"width="100%" height="300px">
                                                               </div>
                                                           </div>
-                                                          <div class="col-7">
-                                                              <div class="news-content-title text-center">
+                                                          <div class="col-12 p-3">
+                                                              <div class="news-content-small-title text-center p-1 mx-3" style="border-bottom:2px solid #000000">
                                                                   {{ item.title }}
                                                               </div>
-                                                              <div class="news-content-body">
+                                                              <div class="news-content-small-body p-2 mb-1">
                                                                   {{ item.description }}
                                                               </div>
-                                                              <div class="news-content-footer">
+                                                              <div class="news-content-small-footer">
                                                                   <a href="#">
                                                                       <button class="btn btn-outline-dark" style="width: 120px;height: 50px;">
                                                                           ادامه...
@@ -81,88 +184,52 @@
                               </div>
                           </div>
                       </div>
-                      <div class="col-12 mt-3 d-block d-md-none">
-                          <div class="news_content_small_client rounded carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
-                              {% if news %}
-                                  <div class="carousel-inner rounded-right">
-                                      {% for item in news %}
-                                          <div class="carousel-item  text-right for_get_first_small">
-                                              <div class="container p-0" style="background-color:#daffff">
-                                                  <div class="row justify-content-center text-center">
-                                                      <div class="col-12">
-                                                          <div class="image_small_news">
-                                                              <img src="/{{ item.image }}" alt="slider{{ item.id }}"width="100%" height="300px">
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12 p-3">
-                                                          <div class="news-content-small-title text-center p-1 mx-3" style="border-bottom:2px solid #000000">
-                                                              {{ item.title }}
-                                                          </div>
-                                                          <div class="news-content-small-body p-2 mb-1">
-                                                              {{ item.description }}
-                                                          </div>
-                                                          <div class="news-content-small-footer">
-                                                              <a href="#">
-                                                                  <button class="btn btn-outline-dark" style="width: 120px;height: 50px;">
-                                                                      ادامه...
-                                                                  </button>
-                                                              </a>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      {% endfor %}
-                                  </div>
-                              {% endif %}
-                          </div>
-                      </div>
                   </div>
               </div>
+              <div class="col-12 col-lg-3">
+                  <div class="container-fluid">
+                      <div class="row justify-content-center">
+                          <div class="col-6 col-lg-12 mt-4 mt-lg-0 pl-0">
+                              <div class="sidBar shodow-lg">
+                                  <div class="incomeSet bg-warning">
+                                      <div class="content_header">
+                                          <br><br>
+                                      </div>
+                                      <div class="content_body">
+                                          <br><br>
+                                      </div>
+                                  </div> 
+                              </div>
+                          </div>
+                          <div class="col-6 col-lg-12 mt-4 pl-0">
+                              <div class="sidBar shodow-lg">
+                                  <div class="expenseSet bg-warning">
+                                      <div class="content_header">
+                                          <br><br>
+                                      </div>
+                                      <div class="content_body">
+                                          <br><br>
+                                      </div>
+                                  </div> 
+                              </div>
+                          </div>
+                          <div class="col-7 col-lg-12 mt-4 pl-0">
+                              <div class="sidBar shodow-lg">
+                                  <div class="statusCheck bg-warning">
+                                      <div class="content_header">
+                                          <br><br>
+                                      </div>
+                                      <div class="content_body">
+                                          <br><br>
+                                      </div>
+                                  </div> 
+                              </div>
+                          </div>
+                      </div>
+                  </div>        
+              </div>
           </div>
-          <div class="col-12 col-lg-3">
-              <div class="container-fluid">
-                  <div class="row justify-content-center">
-                      <div class="col-6 col-lg-12 mt-4 mt-lg-0 pl-0">
-                          <div class="sidBar shodow-lg">
-                              <div class="incomeSet bg-warning">
-                                  <div class="content_header">
-                                      <br><br>
-                                  </div>
-                                  <div class="content_body">
-                                      <br><br>
-                                  </div>
-                              </div> 
-                          </div>
-                      </div>
-                      <div class="col-6 col-lg-12 mt-4 pl-0">
-                          <div class="sidBar shodow-lg">
-                              <div class="expenseSet bg-warning">
-                                  <div class="content_header">
-                                      <br><br>
-                                  </div>
-                                  <div class="content_body">
-                                      <br><br>
-                                  </div>
-                              </div> 
-                          </div>
-                      </div>
-                      <div class="col-7 col-lg-12 mt-4 pl-0">
-                          <div class="sidBar shodow-lg">
-                              <div class="statusCheck bg-warning">
-                                  <div class="content_header">
-                                      <br><br>
-                                  </div>
-                                  <div class="content_body">
-                                      <br><br>
-                                  </div>
-                              </div> 
-                          </div>
-                      </div>
-                  </div>
-              </div>        
-          </div>
-      </div>
-    </div>
+        </div>
+    </main>
     <br><br>
 {% endblock %}

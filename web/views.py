@@ -28,6 +28,9 @@ from django.db.models import Sum
 def index(request):
     context = {}
     
+    count_of_users = User.objects.all().count()
+    context["count_of_users"] = count_of_users
+    
     
     def setSlider():
         slider = get_list_or_404(Slider)

@@ -28,3 +28,24 @@ if (!$(".for_get_first").hasClass("active")){
 if (!$(".for_get_first_small").hasClass("active")){
     $(".for_get_first_small:first").addClass("active")
 }
+
+// smoth scroll to
+
+$(document).ready(function(){
+    $('a[href^="#"]').on('click', function (e) {
+        e.preventDefault();
+
+        $('a').each(function () {
+            $(this).removeClass('active');
+        })
+        $(this).addClass('active');
+
+        var target = this.hash;
+        $target = $(target);
+        $('html, body').stop().animate({
+            'scrollTop': $target.offset().top + 2
+        }, 1000, 'swing', function () {
+            window.location.hash = target;
+        });
+    });
+})
