@@ -23,7 +23,10 @@ import string
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 
-from django.db.models import Sum
+import requests
+from bs4 import BeautifulSoup as soup
+import time
+
 
 def index(request):
     context = {}
@@ -31,6 +34,28 @@ def index(request):
     count_of_users = User.objects.all().count()
     context["count_of_users"] = count_of_users
     
+    # get now time
+    named_tuple = time.localtime()
+    time_string = time.strftime("%m/%d/%Y", named_tuple)
+    context["time_string"] = time_string
+    
+    
+    def getPrices():
+        
+        response = requests.get("https://arzdigital.com/coins/bitcoin/")
+        HTML = soup(response.text, "html.parser")
+
+        response2 = requests.get("https://arzdigital.com/coins/ethereum/")
+        HTML2 = soup(response2.text, "html.parser")
+        
+        toman = HTML.find("span", attrs = {"class" : "arz-sana-price"})
+        btc = HTML.find("div", attrs = {"class" : "arz-coin-page-data-coin-price coinPrice btcprice pulser"})
+        eth = HTML2.find("div", attrs = {"class" : "arz-coin-page-data-coin-price coinPrice pulser"})
+
+        context["toman"] = toman.text
+        context["btc"] = btc.text
+        context["eth"] = eth.text     
+        
     
     def setSlider():
         slider = get_list_or_404(Slider)
@@ -45,6 +70,11 @@ def index(request):
             
         return context
         
+    
+    
+        
+    # get toman and btc and eth prices 
+    # getPrices()
     
     # send image and caption to template
     setSlider()

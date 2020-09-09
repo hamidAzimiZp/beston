@@ -99,7 +99,7 @@
                   <div class="container">
                       <div class="row justify-content-center">
                           <div class="col-12 mt-2 mt-lg-0">
-                              <div class="zpSlider rounded shadow-lg" id="slider1" style="height: 385px">
+                              <div class="zpSlider rounded shadow-sm" id="slider1" style="height: 385px">
                                   <ul>
                                     {% for item in slider %}
                                       <li title="{{ item.caption }}">
@@ -111,7 +111,7 @@
                           </div>
                           <div class="col-12 mt-3 d-none d-md-block ">
                               <div class="news shadow-sm " >
-                                  <div class="news_content rounded carousel slide carousel-fade" data-ride="carousel" data-interval="10000" style="background-color:#daffff">
+                                  <div class="news_content rounded carousel slide carousel-fade" data-ride="carousel" data-interval="10000" style="background-color:#fff">
                                       {% if news %}
                                           <div class="carousel-inner rounded-right">
                                               {% for item in news %}
@@ -186,45 +186,67 @@
                       </div>
                   </div>
               </div>
-              <div class="col-12 col-lg-3">
+              <div class="col-10 mt-2 mt-lg-0 col-lg-3 p-0">
                   <div class="container-fluid">
-                      <div class="row justify-content-center shodow-lg bg-white p-3">
-                          <div class="col-6 col-lg-12 mt-4 mt-lg-0 pl-0">
-                              <div class="sidBar shodow-lg ">
-                                  <div class="incomeSet bg-warning">
-                                      <div class="content_header">
-                                          <br><br>
-                                      </div>
-                                      <div class="content_body">
-                                          <br><br>
-                                      </div>
-                                  </div> 
-                              </div>
+                      <div class="row justify-content-center shadow-sm rounded bg-white p-2 pl-3">
+                        <div class="col-12 col-lg-12 mt-4 mt-lg-0 pl-0">
+                            <div class="content">
+                                <div class="title text-center" style="border-bottom: 1px solid #000;">
+                                    اعلانات
+                                </div>
+                                <div class="body">
+                                    <div class="sidBar shodow-lg ">
+                                        <div class="info mt-4">
+                                            <div class="content_body mr-2">
+                                                <ul>
+                                                    <li>
+                                                        <p>تاریخ امروز: {{ time_string }}</p>
+                                                    </li>
+                                                    <li>
+                                                        <p>قیمت دلار امروز: {{ toman }} تومان</p>                                               
+                                                    </li>
+                                                    <li>
+                                                        <p>قیمت بیتکوین امروز: {{ btc }}</p>
+                                                    </li>
+                                                    <li>                                                        
+                                                        <p>قیمت اتریوم امروز: {{ eth }}</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
                           </div>
-                          <div class="col-6 col-lg-12 mt-4 pl-0">
-                              <div class="sidBar shodow-lg">
-                                  <div class="expenseSet bg-warning">
-                                      <div class="content_header">
-                                          <br><br>
-                                      </div>
-                                      <div class="content_body">
-                                          <br><br>
-                                      </div>
-                                  </div> 
-                              </div>
-                          </div>
-                          <div class="col-7 col-lg-12 mt-4 pl-0">
-                              <div class="sidBar shodow-lg">
-                                  <div class="statusCheck bg-warning">
-                                      <div class="content_header">
-                                          <br><br>
-                                      </div>
-                                      <div class="content_body">
-                                          <br><br>
-                                      </div>
-                                  </div> 
-                              </div>
-                          </div>
+                      </div>
+                      <div class="row justify-content-center shadow-sm rounded bg-white p-2 pl-3 mt-2 mt-lg-5">
+                        <div class="col-12 col-lg-12 mt-4 mt-lg-0 pl-0 ">
+                            <div class="content">
+                                <div class="title text-center" style="border-bottom: 1px solid #000;">
+                                    مارا در شبکه های مجازی دنبال کنید
+                                </div>
+                                <ul class="mt-4 mr-3 social-icons">
+                                    <li class="instagram">
+                                        <a href="https://www.instagram.com/slimodan/"  target="_blank">
+                                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            <span class="mr-2"> اینستاگرام</span>
+                                        </a>
+                                    </li><br>
+                                    <li class="facebook">
+                                        <a href="#" target="_blank">
+                                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            <span class="mr-2">فیسبوک</span>
+                                        </a>
+                                    </li><br>
+                                    <li class="telegram">
+                                        <a href="http://t.me/slimodan" target="_blank">
+                                            <i class="fa fa-telegram" aria-hidden="true" style="margin-right: -9px;"></i>
+                                            <span class="mr-2">تلگرام</span>
+                                        </a>
+                                    </li>                                    
+                                </ul>
+                            </div>
+                        </div>
                       </div>
                   </div>        
               </div>
