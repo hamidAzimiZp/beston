@@ -6,6 +6,7 @@ body{
     text-align: right;
     background:#f6f9fb;
     font-family: IranSansBlock;
+    
 }
 *{
     margin: 0;
@@ -31,6 +32,8 @@ li{
     background-size: cover;
     min-height: 100vh;
     position:relative;
+    overflow: hidden;    
+    box-shadow: 0 0 2px 2px #000;
 }
 .cover{
     position: absolute;
@@ -38,7 +41,7 @@ li{
     right: 0;
     background: rgba(0, 0, 0, 0.7);
     width: 100%;
-    height: 100vh;
+    height: 150vh;
     min-height: 100%;
 }
 .my_header img{
