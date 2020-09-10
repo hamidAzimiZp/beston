@@ -74,7 +74,7 @@ def index(request):
     
         
     # get toman and btc and eth prices 
-    # getPrices()
+    getPrices()
     
     # send image and caption to template
     setSlider()
