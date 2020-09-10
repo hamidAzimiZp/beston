@@ -302,3 +302,54 @@ nav for small clients
 .social-icons li.telegram:hover i{
     color : cyan
 }
+/* footer section */
+.fback{
+    position: absolute;
+    top: -15px;
+    z-index: -1;
+}
+.footSection1{
+    text-align: center;
+}
+.footSection1 .secTitle{
+    color: rgba(255,255,255,0.7);
+    padding-top: 10px;
+    border-bottom: 1px solid #fff;
+    text-align: center;
+    padding-bottom: 5px;
+    margin: 0 25px;
+
+}
+.footSection1 .secBody ul{
+    margin-top: 17px;
+}
+.footSection1 .secBody ul li{
+    display: inline;
+    margin-right: 8px;
+
+}
+.footSection1 .secBody ul li a{
+    color: #fff;
+    transition: 0.3s linear all;
+}
+.footSection1 .secBody ul li:hover a{
+    color: #ffff00;
+}
+.footSection2 .secTitle{
+    color: rgba(255,255,255,0.7);
+    margin-right: 20px;
+    border-bottom: 1px solid #fff;
+    margin: 0 25px;
+}
+
+.footSection2 .foot-body{
+    margin-right: 10px;
+    text-align: center;
+}
+
+.footSection3 .secTitle{
+    color: rgba(255,255,255,0.7);
+    margin-right: 20px;
+    border-bottom: 1px solid #fff;
+    margin: 0 25px;
+}
