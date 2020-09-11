@@ -49,8 +49,9 @@
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </td>
                                     <td hidden >{{ item.id }}</td>
-                                    <td hidden>en</td>
-                                    <td class="edit">
+                                    <td hidden>enD</td>
+                                    <td hidden>enU</td>
+                                    <td class="edit" data-toggle="modal"  data-target=".myEditModal" name="button">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                     </td>
                                     <td class="date">{{ item.date }}</td>
@@ -90,14 +91,15 @@
                                         <td class="trash" data-toggle="modal"  data-target=".myTrashModal" name="button">
                                             <i class="fa fa-trash-o" aria-hidden="true"></i> 
                                         </td>            
-                                        <td hidden >{{ item.id }}</td>  
-                                        <td hidden>ex</td>                       
-                                        <td class="edit">
+                                        <td hidden>{{ item.id }}</td>  
+                                        <td hidden>exD</td> 
+                                        <td hidden>exU</td>                      
+                                        <td class="edit" data-toggle="modal"  data-target=".myEditModal" name="button">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                         </td>
                                         <td class="date">{{ item.date }}</td>
-                                        <td>{{ item.amount }}</td>
-                                        <td>{{ item.text }}</td>
+                                        <td >{{ item.amount }}</td>
+                                        <td class="text">{{ item.text }}</td>
                                         <td class="number2"></td>
                                     </tr>
                                 {% endfor %}
@@ -131,16 +133,69 @@
                             <div class="modal-body text-center">
                                 <form method="POST">
                                     {% csrf_token %}                                        
-                                    <input type="text" hidden class="fieldId" value="0" name = "this_id_expense">
+                                    <input type="text" hidden class="fieldId" value="0" name = "this_id">
                                     <input type="text" hidden class="kind" value="0" name = "kind_of_field">
                                     <button type="submit" class="btn btn-outline-success ml-3">تایید</button>
-                                    <button class="btn btn-outline-success" data-dismiss="modal" name="button">لغو</button>
+                                    <button class="btn btn-outline-danger" data-dismiss="modal" name="button">لغو</button>
                                     <script>
                                         $(".trash").on("click", function(){
                                             let id = $(this).next("td").html()
                                             let kind = $(this).next("td").next("td").html()
                                             $(".fieldId").val(id)
                                             $(".kind").val(kind)
+                                        })
+                                    </script>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="modal fade myEditModal" id="myEditModal">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header bg-info d-flex ">
+                              <span type="button" class="btn close" data-dismiss="modal" name="button">
+                                <span>&times;</span>
+                              </span>
+                              <div class="modal-title text-center"">
+                                <span class="text-white" style="position: absolute;left: 40%">ویرایش</span>
+                              </div>
+                            </div>
+                            <div class="modal-body text-center">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <label for="#this_titr" class="btn btn-info">تیتر</label>
+                                        <input type="text" name="this_titr" class="form-control" value="title" id="this_titr">
+                                    </div> 
+                                    <div class="input-group">
+                                        <label for="#this_toman" class="btn btn-info">مقدار</label>
+                                        <input type="number" name="this_toman" class="form-control" value="0" id="this_toman">
+                                    </div>    
+                                    <!-- <div class="input-group">
+                                        <label for="#this_date" class="btn btn-info">تاریخ</label>
+                                        <input type="text" name="date" onclick="(this.type = 'date')" onblur="(this.type = 'text')" class="form-control" value="money" id="this_date">
+                                    </div>         -->
+
+                                    <input type="text" hidden class="fieldId" value="0" name = "this_id">
+                                    <input type="text" hidden class="kind" value="0" name = "kind_of_field">
+                                    <div class="input-group mt-2 mr-3  justify-content-center">
+                                        <button type="submit" class="btn btn-outline-success ml-3">ثبت</button>
+                                        <button class="btn btn-outline-danger" data-dismiss="modal" name="button">لغو</button>
+                                    </div>
+                                    <script>
+                                        $(".edit").on("click", function(){
+                                            let this_id = $(this).prev().prev().prev().html()
+                                            let this_kind = $(this).prev().html()
+                                            let date = $(this).next().html()
+                                            let this_toman = $(this).next().next().html()
+                                            let this_titr = $(this).next().next().next().html()
+
+                                            $(".fieldId").val(this_id)
+                                            $(".kind").val(this_kind)
+                                            $("#this_titr").val(this_titr)
+                                            $("#this_toman").val(this_toman)
+                                            $("#this_date").val(date)
                                         })
                                     </script>
                                 </form>

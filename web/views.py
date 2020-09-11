@@ -34,11 +34,6 @@ def index(request):
     count_of_users = User.objects.all().count()
     context["count_of_users"] = count_of_users
     
-    # get now time
-    named_tuple = time.localtime()
-    time_string = time.strftime("%m/%d/%Y", named_tuple)
-    context["time_string"] = time_string
-    
     
     def getPrices():
         
@@ -69,8 +64,7 @@ def index(request):
         context["news"] = news
             
         return context
-        
-    
+
     
         
     # get toman and btc and eth prices 
@@ -281,12 +275,30 @@ def user_status(request):
     def deleteField():        
         if request.POST:
             this_user = request.user
-            this_id = int(request.POST["this_id_expense"])
+            this_id = int(request.POST["this_id"])
             
-            if request.POST["kind_of_field"] == "ex":           
+            if request.POST["kind_of_field"] == "exD":           
                 Expense.objects.filter(user = this_user).filter(id = this_id).delete()
-            elif request.POST["kind_of_field"] == "en":
+            elif request.POST["kind_of_field"] == "enD":
                 Income.objects.filter(user = this_user).filter(id = this_id).delete()
+    
+    
+    def updateField():        
+        if request.POST:
+            this_user = request.user
+            this_id = int(request.POST["this_id"])
+            
+            if request.POST["kind_of_field"] == "exU": 
+                this_toman = request.POST["this_toman"]
+                this_titr = request.POST["this_titr"]          
+                Expense.objects.filter(user = this_user).filter(id = this_id).update(amount = this_toman, 
+                           text = this_titr)
+                
+            elif request.POST["kind_of_field"] == "enU":
+                this_toman = request.POST["this_toman"]
+                this_titr = request.POST["this_titr"]
+                Income.objects.filter(user = this_user).filter(id = this_id).update(amount = this_toman, 
+                           text = this_titr)
            
             
     
@@ -316,6 +328,8 @@ def user_status(request):
     # for delete fields
     deleteField()
     
+    # for update fields
+    updateField()
     
     return render(request, "web/dashboard_status.html", context)
     
