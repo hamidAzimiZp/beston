@@ -19,87 +19,170 @@
 {% endblock %}
 
 {% block body %}
-    <p class="text-center">
-        خوش آمدید {{ user.username }} 
-    </p>
-
-    {% if message and token %}
-        <pre class="text-center">
-            <code>{{ message }}</code>
-            <br><br>
-            توکن شما : <code>{{ token }}</code>
-        </pre>
-    {% endif %}
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-8">
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ</td>
-                        <td>مقدار درآمد</td>
-                        <td>نام</td>
-                        <td>آیدی</td>
-                    </tr>
-                    {% for item in income_field %}
-                        <tr>
-                            <td class="date">{{ item.date }}</td>
-                            <td>{{ item.amount }}</td>
-                            <td>{{ item.text }}</td>
-                            <td>{{ item.id }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-                <br>
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ امروز</td>
-                        <td>جمع درآمد</td>
-                        <td>تعداد</td>
-                    </tr>
-                    <tr>
-                        <td class="date">{{ now }}</td>  
-                        <td>{{ total_income }}</td>
-                        <td>{{ expense_count }}</td>
-                    </tr>
-                </table>
+    <div class="container mt-4">
+        <div class="row justify-content-center mb-2 text-center">
+            <div class="col-6 col-md-12">
+                <nav class="nav nav-tabs justify-content-center" style="border-bottom:none">
+                    <div class="for_border" style="border-bottom:1px solid #ddd; width:250px"></div>
+                    <a class="nav-link active section1" data-toggle="tab">درآمد</a>
+                    <a class="nav-link section2" data-toggle="tab">مخارج</a>
+                    <div class="for_border" style="border-bottom:1px solid #ddd; width:250px"></div>
+                </nav>
             </div>
         </div>
-        <br><br><br>
-        <hr>
-        <br><br><br>
         <div class="row justify-content-center">
-            <div class="col-12 col-8">
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ</td>
-                        <td>مقدار خرج شده</td>
-                        <td>نام</td>
-                        <td>آیدی</td>
-                    </tr>
-                    {% for item in expense_field %}
-                        <tr>
-                            <td class="date">{{ item.date }}</td>
-                            <td>{{ item.amount }}</td>
-                            <td>{{ item.text }}</td>
-                            <td>{{ item.id }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-                <br>
-                <table class="table table-bordered table-striped table-hover">
-                    <tr>
-                        <td>تاریخ امروز</td>
-                        <td>جمع مخارج</td>
-                        <td>تعداد</td>
-                    </tr>
-                    <tr>
-                        <td class="date">{{ now }}</td>  
-                        <td>{{ total_expense }}</td>
-                        <td>{{ expense_count }}</td>
-                    </tr>
-                </table>
+            <div class="col-12 col-lg-8">
+                <div class="tab-content bg-white shodow-sm rounded p-3">
+                    <div class="tab-pane fade active show" id="section1">
+                        <table class="table table-bordered table-responsive-sm table-striped table-hover">
+                            <tr>
+                                <td>حذف</td>
+                                <td>ویرایش</td>
+                                <td>تاریخ</td>
+                                <td>مقدار درآمد</td>
+                                <td>نام</td>
+                                <td>شماره</td>
+                            </tr>
+                            {% for item in income_field %}
+                                <tr>
+                                    <td class="trash" data-toggle="modal"  data-target=".myTrashModal" name="button">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td hidden >{{ item.id }}</td>
+                                    <td hidden>en</td>
+                                    <td class="edit">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    </td>
+                                    <td class="date">{{ item.date }}</td>
+                                    <td>{{ item.amount }}</td>
+                                    <td>{{ item.text }}</td>
+                                    <td class="number"></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <br>
+                        <table class="table table-bordered table-responsive-sm table-striped table-hover">
+                            <tr>
+                                <td>تاریخ امروز</td>
+                                <td>جمع درآمد</td>
+                                <td>تعداد</td>
+                            </tr>
+                            <tr>
+                                <td class="date">{{ now }}</td>  
+                                <td>{{ total_income }}</td>
+                                <td>{{ expense_count }}</td>
+                            </tr>
+                        </table>
+                    </div>  
+                    <div class="tab-pane fade" id="section2">
+                        <table class="table table-bordered table-responsive-sm table-striped table-hover">
+                            <tr>
+                                <td>حذف</td>
+                                <td>ویرایش</td>
+                                <td>تاریخ</td>
+                                <td>مقدار خرج شده</td>
+                                <td>نام</td>
+                                <td>شماره</td>
+                            </tr>
+                            {% if expense_field %}
+                                {% for item in expense_field %}
+                                    <tr>
+                                        <td class="trash" data-toggle="modal"  data-target=".myTrashModal" name="button">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i> 
+                                        </td>            
+                                        <td hidden >{{ item.id }}</td>  
+                                        <td hidden>ex</td>                       
+                                        <td class="edit">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        </td>
+                                        <td class="date">{{ item.date }}</td>
+                                        <td>{{ item.amount }}</td>
+                                        <td>{{ item.text }}</td>
+                                        <td class="number2"></td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        </table>
+                        <br>
+                        <table class="table table-bordered table-responsive-sm table-striped table-hover">
+                            <tr>
+                                <td>تاریخ امروز</td>
+                                <td>جمع مخارج</td>
+                                <td>تعداد</td>
+                            </tr>
+                            <tr>
+                                <td class="date">{{ now }}</td>  
+                                <td>{{ total_expense }}</td>
+                                <td>{{ expense_count }}</td>
+                            </tr>
+                        </table>
+                    </div>    
+                    <div class="modal fade myTrashModal" id="myTrashModal">
+                        <div class="modal-dialog modal-sm modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header bg-info d-flex ">
+                              <span type="button" class="btn close" data-dismiss="modal" name="button">
+                                <span>&times;</span>
+                              </span>
+                              <div class="modal-title text-center" style="position: absolute;left: 35%;">
+                                <span class="text-white">حذف این مورد ؟</span>
+                              </div>
+                            </div>
+                            <div class="modal-body text-center">
+                                <form method="POST">
+                                    {% csrf_token %}                                        
+                                    <input type="text" hidden class="fieldId" value="0" name = "this_id_expense">
+                                    <input type="text" hidden class="kind" value="0" name = "kind_of_field">
+                                    <button type="submit" class="btn btn-outline-success ml-3">تایید</button>
+                                    <button class="btn btn-outline-success" data-dismiss="modal" name="button">لغو</button>
+                                    <script>
+                                        $(".trash").on("click", function(){
+                                            let id = $(this).next("td").html()
+                                            let kind = $(this).next("td").next("td").html()
+                                            $(".fieldId").val(id)
+                                            $(".kind").val(kind)
+                                        })
+                                    </script>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="row justify-content-center mt-3 mb-3">
+            <div class="col-8 text-center">
+                <a href="{% url 'web:dashboard' %}"><button class="btn btn-outline-info">افزودن عنوان جدید</button></a>
+            </div>
+        </div>
+    </div>    
+    <script>
+        $(".section1").on("click", function(){
+            $(".tab-pane").each(function(){
+                $(this).removeClass("active")
+            })
+            $("#section1").addClass("active")
+        })
+        
+        $(".section2").on("click", function(){
+            $(".tab-pane").each(function(){
+                $(this).removeClass("active")
+            })
+            $("#section2").addClass("active show")
+        })
+
+        let count = 0
+        $(".number").each(function(){
+            count += 1
+            $(this).html(count)
+        })
+
+        let count2 = 0
+        $(".number2").each(function(){
+            count2 += 1
+            $(this).html(count2)
+        })
+
+    </script>
 {% endblock %}

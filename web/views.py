@@ -224,13 +224,12 @@ def submit_expense(request):
                            amount = this_amount, 
                            text = this_text,
                            date = this_date,)
-    
-    print("I'm submit expense")
-    print(request.POST)
+
     
     
     return JsonResponse({
-       "status" : "ok"
+       "status" : "ok",
+       "M" : request.POST
     }, encoder = JSONEncoder)
     
     
@@ -272,12 +271,25 @@ def submit_income(request):
     }, encoder = JSONEncoder)
 
 
-
+ 
 def user_status(request):
     
     this_user = request.user
     now = datetime.now()
-        
+    
+    
+    def deleteField():        
+        if request.POST:
+            this_user = request.user
+            this_id = int(request.POST["this_id_expense"])
+            
+            if request.POST["kind_of_field"] == "ex":           
+                Expense.objects.filter(user = this_user).filter(id = this_id).delete()
+            elif request.POST["kind_of_field"] == "en":
+                Income.objects.filter(user = this_user).filter(id = this_id).delete()
+           
+            
+    
     income_count = Income.objects.filter(user__username = this_user).all().count()
     income_field = Income.objects.filter(user__username = this_user)
     total_income_dict = Income.objects.filter(user=this_user).aggregate(Sum("amount"))
@@ -300,6 +312,10 @@ def user_status(request):
         "total_income" : total_income,
         "total_expense" : total_expense,
     }
+    
+    # for delete fields
+    deleteField()
+    
     
     return render(request, "web/dashboard_status.html", context)
     

@@ -7,6 +7,7 @@ body{
     background:#f6f9fb;
     font-family: IranSansBlock;
     background-image: url("../_images/bg.svg");
+    padding: 0 !important;
 }
 *{
     margin: 0;
@@ -306,6 +307,8 @@ nav for small clients
 .fback{
     position: absolute;
     top: -15px;
+    left: 0;
+    right: 0;
     z-index: -1;
 }
 .footSection1{
@@ -352,4 +355,13 @@ nav for small clients
     margin-right: 20px;
     border-bottom: 1px solid #fff;
     margin: 0 25px;
+}
+
+/* userStatus page */
+
+td.trash:hover i{
+    color: red;
+}
+td.edit:hover i{
+    color: blue;
 }
