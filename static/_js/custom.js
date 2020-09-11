@@ -14,11 +14,6 @@ $(".wrapper").on("click", function(){
     $(".my_nav2").removeClass("show_nav")
 })
 
-// run slider
-$('#slider1').zpSlider({
-    speed : "2000"
-});
-
 //add active class to newsSlider
 if (!$(".for_get_first").hasClass("active")){
     $(".for_get_first:first").addClass("active")
