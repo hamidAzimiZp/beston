@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-md navbar-dark bg-dark" id="this_head">
-    <a href="{% url 'web:index' %}" class="navbar-brand m-auto m-lg-0" style="cursor: pointer;">Beston</a>
+    <a href="{% url 'web:index' %}" class="navbar-brand m-auto m-md-0" style="cursor: pointer;">Beston</a>
     <div class="collapse navbar-collapse text-left position-absolute pl-2" id="myNavbar" style="left: 0;width:100%">
         <div class="container-fluid">
             <div class="row justify-content-between mt-3" style="width:100%">
@@ -23,6 +23,7 @@
                     <ul style="list-style: none !important;">
                         <li>
                             {% if user.is_authenticated %}
+                                <span class="text-white">{{ user.username }} خوش آمدید</span>
                                 <a href="{% url 'logout' %}">
                                     <button type="button" class="btn btn-outline-danger" style="margin-right: 8px;"> خروج </button>
                                 </a>
@@ -43,7 +44,7 @@
 </nav>
 
 <!-- nav for small devices -->
-<nav class="my_nav2 d-block text-white">
+<nav class="my_nav2 d-block d-md-none text-white">
     <div class="nav_content">
         <div class="nav_header">
             <div class="user_img" {% if not user.is_authenticated %} style="border: none; box-shadow:none" {% endif %} >

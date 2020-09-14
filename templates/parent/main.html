@@ -30,9 +30,12 @@
         {% endblock %}
     </head> 
     <body>
-        {% include "partials/navigation.html" %}
+        <div id="preloader">
+            <div id="loader"></div>
+        </div>
         
         <div class="wrapper">
+            {% include  "partials/navigation.html" %}
             {% block body %}
 
             {% endblock %}

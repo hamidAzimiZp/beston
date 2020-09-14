@@ -44,3 +44,18 @@ $(document).ready(function(){
         });
     });
 })
+
+
+// set loader
+
+var loader = $("#loader");
+var wrapper = $(".wrapper");
+$(document).ready(function(){
+  setTimeout(function(){
+    showContent();
+  })
+})
+function showContent() {
+  loader.css("display","none");
+  wrapper.css("display","block");
+}
