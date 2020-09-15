@@ -86,37 +86,52 @@ from django.conf import settings
 
 
 def register(request):
+    if request.POST:
+        userBack = request.POST['username']
+        fistNameBack = request.POST["first_name"]
+        emailBack = request.POST['email']
+        
     if "requestcode" in request.POST:  # form is filled. if not spam, generate code and save in db, wait for email confirmation, return message
         # is this spam? check reCaptcha
         if not grecaptcha_verify(request):  # captcha was not correct
             context = {
-                'message': 'کپچای گوگل درست وارد نشده بود. شاید ربات هستید؟ کد یا کلیک یا تشخیص عکس زیر فرم را درست پر کنید. ببخشید که فرم به شکل اولیه برنگشته!'}  # TODO: forgot password
+                'message': 'کپچای گوگل درست وارد نشده است. شاید ربات هستید؟!',
+                "fistNameBack" : fistNameBack,
+                "userBack" : userBack,
+                "emailBack" : emailBack,
+            } 
             return render(request, 'registration/register.html', context)
 
         # duplicate email
         if User.objects.filter(email=request.POST['email']).exists():
             context = {
-                'message': 'متاسفانه این ایمیل قبلا استفاده شده است. در صورتی که این ایمیل شما است، از صفحه ورود گزینه فراموشی پسورد رو انتخاب کنین. ببخشید که فرم ذخیره نشده. درست می شه'}  # TODO: forgot password
+                'message': 'متاسفانه این ایمیل قبلا استفاده شده است',
+                "fistNameBack" : fistNameBack,
+                "userBack" : userBack,
+                "emailBack" : emailBack,
+            }
             # TODO: keep the form data
             return render(request, 'registration/register.html', context)
         # if user does not exists
         if not User.objects.filter(username=request.POST['username']).exists():
             code = get_random_string(length=32)
             now = datetime.now()
+            username = request.POST['username']    
             first_name = request.POST["first_name"]
             email = request.POST['email']
-            
             # hash passwords
             password = make_password(request.POST['password'])
             passwordConfirm = make_password(request.POST['passwordConfirm'])
-            username = request.POST['username']
             
             ps1 = request.POST['password']
             ps2 = request.POST['passwordConfirm']
             # check passwords
             if not ps1 == ps2:
                 context = {
-                    "message" : "عدم تطابق رمز عبور مجددا تلاش کنید"
+                    "message" : "عدم تطابق رمز عبور مجددا تلاش کنید",
+                    "fistNameBack" : fistNameBack,
+                    "userBack" : userBack,
+                    "emailBack" : emailBack, 
                 }
                 return render(request, 'registration/register.html', context)
             
@@ -143,8 +158,12 @@ def register(request):
         
         else:
             context = {
-                'message': 'متاسفانه این نام کاربری قبلا استفاده شده است. از نام کاربری دیگری استفاده کنید.'}  # TODO: forgot password
-            # TODO: keep the form data
+                'message': 'متاسفانه این نام کاربری قبلا استفاده شده است. از نام کاربری دیگری استفاده کنید.',
+                "fistNameBack" : fistNameBack,
+                "userBack" : userBack,
+                "emailBack" : emailBack,    
+            } 
+            
             return render(request, 'registration/register.html', context)
         
     elif "code" in request.GET:  # user clicked on code
@@ -165,7 +184,11 @@ def register(request):
             return render(request, 'registration/register.html', context)
         else:
             context = {
-                'message': 'این کد فعال سازی معتبر نیست. در صورت نیاز دوباره تلاش کنید'}
+                'message': 'این کد فعال سازی معتبر نیست. در صورت نیاز دوباره تلاش کنید',
+                "fistNameBack" : fistNameBack,
+                "userBack" : userBack,
+                "emailBack" : emailBack,
+                }
             return render(request, 'registration/register.html', context)
     else:
         context = {'message': ''}
