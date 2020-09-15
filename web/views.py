@@ -1,5 +1,5 @@
-from django.shortcuts import get_object_or_404, redirect, render, get_list_or_404
-from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render, get_list_or_404
+from django.http import JsonResponse
 from json.encoder import JSONEncoder
 from django.views.decorators.csrf import csrf_exempt
 from .models import User, Token, Income, Expense, UserRegister, Slider, News
@@ -8,12 +8,9 @@ from django.views import generic
 
 
 from django.core import serializers
-from django.conf import settings
-from django.contrib.auth.hashers import make_password, check_password
-from django.db.models import Sum, Count
-from django.utils import timezone
+from django.contrib.auth.hashers import make_password
+from django.db.models import Sum
 from django.utils.crypto import get_random_string
-from django.views.decorators.http import require_POST
 import random
 from django.contrib.auth.decorators import login_required
 from .utils import grecaptcha_verify
