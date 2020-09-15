@@ -10,7 +10,7 @@ $(".navButton").on("click", ()=>{
 })
 
 // close when click on body
-$(".wrapper").on("click", function(){
+$(".wrapper2").on("click", function(){
     $(".my_nav2").removeClass("show_nav")
 })
 

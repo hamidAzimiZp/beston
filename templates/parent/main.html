@@ -36,11 +36,13 @@
         
         <div class="wrapper">
             {% include  "partials/navigation.html" %}
-            {% block body %}
+            <div class="wrapper2">
+                {% block body %}
 
-            {% endblock %}
+                {% endblock %}
 
-            {% include "partials/footer.html"%}
+                {% include "partials/footer.html"%}
+            </div>
         </div>
     </body>
 </html>
