@@ -13,7 +13,7 @@ class UserRegister(models.Model):
     time = models.DateTimeField(default=datetime.date.today)
     username = models.CharField(max_length=50)
     password = models.CharField(max_length=50)  # TODO: do not save password
-    
+    passwordConfirm = models.CharField(max_length=50, blank = True)
     
     def __str__(self):
         return self.username

@@ -108,26 +108,41 @@ def register(request):
             now = datetime.now()
             first_name = request.POST["first_name"]
             email = request.POST['email']
+            
+            # hash passwords
             password = make_password(request.POST['password'])
+            passwordConfirm = make_password(request.POST['passwordConfirm'])
             username = request.POST['username']
-            temporarycode = UserRegister(
-                email=email, time=now, code=code, username=username, password=password,
-                firstName = first_name)
-            temporarycode.save()
-            # message = PMMail(api_key=settings.POSTMARK_API_TOKEN,
-            #                 subject="فعالسازی اکانت بستون",
-            #                 sender="hamidazimi44100@gmail.com",
-            #                 to=email,
-            #                 text_body=" برای فعال کردن اکانت بستون خود روی لینک روبرو کلیک کنید: {}?code={}".format(
-            #                     request.build_absolute_uri('/register/'), code),
-            #                 tag="account request")
-            # message.send()
-            # message = 'ایمیلی حاوی لینک فعال سازی اکانت به شما فرستاده شده، لطفا پس از چک کردن ایمیل، روی لینک کلیک کنید.'
-            message = "برای فعال کردن اکانت بستون خود <a href=\"{0}?code={1}\">اینجا</a> کلیک کنید".format(request.build_absolute_uri('/register/'), code)
-            context = {
-                'message': message 
+            
+            ps1 = request.POST['password']
+            ps2 = request.POST['passwordConfirm']
+            # check passwords
+            if not ps1 == ps2:
+                context = {
+                    "message" : "عدم تطابق رمز عبور مجددا تلاش کنید"
                 }
-            return render(request, 'registration/register.html', context)
+                return render(request, 'registration/register.html', context)
+            
+            else:                
+                
+                temporarycode = UserRegister(
+                    email=email, time=now, code=code, username=username, password=password,
+                    firstName = first_name, passwordConfirm = passwordConfirm)
+                temporarycode.save()
+                # message = PMMail(api_key=settings.POSTMARK_API_TOKEN,
+                #                 subject="فعالسازی اکانت بستون",
+                #                 sender="hamidazimi44100@gmail.com",
+                #                 to=email,
+                #                 text_body=" برای فعال کردن اکانت بستون خود روی لینک روبرو کلیک کنید: {}?code={}".format(
+                #                     request.build_absolute_uri('/register/'), code),
+                #                 tag="account request")
+                # message.send()
+                # message = 'ایمیلی حاوی لینک فعال سازی اکانت به شما فرستاده شده، لطفا پس از چک کردن ایمیل، روی لینک کلیک کنید.'
+                message = "برای فعال کردن اکانت بستون خود <a href=\"{0}?code={1}\">اینجا</a> کلیک کنید".format(request.build_absolute_uri('/register/'), code)
+                context = {
+                    'message': message 
+                    }
+                return render(request, 'registration/register.html', context)
         
         else:
             context = {
