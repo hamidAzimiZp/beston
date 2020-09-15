@@ -8,6 +8,7 @@ from django.conf import settings
 
 class UserRegister(models.Model):
     code = models.CharField(max_length=32)
+    firstName = models.CharField(max_length = 32, blank = True)
     email = models.CharField(max_length=120)
     time = models.DateTimeField(default=datetime.date.today)
     username = models.CharField(max_length=50)

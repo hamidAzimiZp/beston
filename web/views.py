@@ -68,7 +68,7 @@ def index(request):
     
         
     # get toman and btc and eth prices 
-    getPrices()
+    # getPrices()
     
     # send image and caption to template
     setSlider()
@@ -106,11 +106,13 @@ def register(request):
         if not User.objects.filter(username=request.POST['username']).exists():
             code = get_random_string(length=32)
             now = datetime.now()
+            first_name = request.POST["first_name"]
             email = request.POST['email']
             password = make_password(request.POST['password'])
             username = request.POST['username']
             temporarycode = UserRegister(
-                email=email, time=now, code=code, username=username, password=password)
+                email=email, time=now, code=code, username=username, password=password,
+                firstName = first_name)
             temporarycode.save()
             # message = PMMail(api_key=settings.POSTMARK_API_TOKEN,
             #                 subject="فعالسازی اکانت بستون",
@@ -138,7 +140,7 @@ def register(request):
         if UserRegister.objects.filter(code=code).exists():  # if code is in temporary db, read the data and create the user
             new_temp_user = UserRegister.objects.get(code=code)
             newuser = User.objects.create(username=new_temp_user.username, password=new_temp_user.password,
-                                          email=new_temp_user.email)
+                                          email=new_temp_user.email, first_name = new_temp_user.firstName)
             this_token = get_random_string(length=48)
             token = Token.objects.create(user=newuser, token=this_token)
             # delete the temporary activation code from db
